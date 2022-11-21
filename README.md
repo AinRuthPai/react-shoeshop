@@ -2,7 +2,7 @@
 
 ## 메인 페이지
 
-![main](/src/img/shoeshop-main.png)
+![main](/src/img/shoeshop-main.gif)
 
 ## 디렉토리 구조
 
