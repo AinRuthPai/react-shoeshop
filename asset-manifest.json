@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/react-shoeshop/static/js/main.1c7966e2.js",
+    "static/media/shoes.jpg": "/react-shoeshop/static/media/shoes.24892210a509890a9755.jpg",
+    "index.html": "/react-shoeshop/index.html",
+    "main.1c7966e2.js.map": "/react-shoeshop/static/js/main.1c7966e2.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.1c7966e2.js"
+  ]
+}
