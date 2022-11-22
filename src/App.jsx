@@ -8,6 +8,7 @@ import Data from "./db/Data";
 import Info from "./components/Info";
 import Login from "./components/Login";
 import ItemAll from "./components/ItemAll";
+import NotFound from "./components/NotFound";
 
 const GlobalStyle = createGlobalStyle`
 @font-face {
@@ -33,12 +34,13 @@ export default function App() {
       <GlobalStyle />
       <Header />
       <Routes>
-        <Route path='/' element={<MainPage data={data} />} />
+        <Route path='/react-shoeshop' element={<MainPage data={data} />} />
         <Route path='/detail/:id' element={<ItemDetail data={data} />} />
         <Route path='/itemall' element={<ItemAll data={data} />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/info' element={<Info />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

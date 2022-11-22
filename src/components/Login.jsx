@@ -46,7 +46,7 @@ export default function Login() {
         <button>로그인</button>
       </FormStyle>
       <div>
-        <span>아직 계정이 없으신가요? -> </span>
+        <span>{`아직 계정이 없으신가요? ->`} </span>
         <span>회원가입</span>
       </div>
     </FormDiv>

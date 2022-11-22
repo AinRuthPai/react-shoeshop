@@ -49,7 +49,7 @@ export default function Header() {
   return (
     <HeaderStyle>
       <header>
-        <h1 onClick={() => navigate("/")}>ShoeShop</h1>
+        <h1 onClick={() => navigate("/react-shoeshop")}>ShoeShop</h1>
         <div>
           <NavLink to='/itemall'>전체 상품</NavLink>
           <NavLink to='/cart'>장바구니</NavLink>

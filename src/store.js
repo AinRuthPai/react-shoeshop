@@ -2,13 +2,16 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const cart = createSlice({
   name: "cart",
-  initialState: [
-    { id: 0, name: "White and Black", price: 160000, count: 1 },
-    // { id: 2, name: "Grey Yordan", price: 130000, count: 1 },
-  ],
+  initialState: [],
   reducers: {
     addItem(state, action) {
       state.push(action.payload);
+    },
+    removeItem(state, action) {
+      state.splice(
+        state.findIndex((item) => item.id === action.payload.id),
+        1
+      );
     },
     addCount(state, action) {
       state[action.payload].count++;
@@ -26,6 +29,7 @@ const cart = createSlice({
 export const { addCount } = cart.actions;
 export const { removeCount } = cart.actions;
 export const { addItem } = cart.actions;
+export const { removeItem } = cart.actions;
 
 export default configureStore({
   reducer: {

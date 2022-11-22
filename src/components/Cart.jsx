@@ -1,8 +1,8 @@
 import { Menu } from "./MainPage";
 import styled, { css } from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCount, removeCount } from "../store";
+import { addCount, removeCount, removeItem } from "../store";
 
 const CartContainer = styled.div`
   position: relative;
@@ -95,11 +95,24 @@ const CartImg = styled.img`
   object-fit: contain;
 `;
 
+const DeleteIcon = styled.button`
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  font-size: 20px;
+  padding: 0;
+`;
+
 export default function Cart() {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-
   const [check, setCheck] = useState(true);
+
+  const itemPrice = state.cart.map((state) => {
+    return Object.values(state)[2] * state.count;
+  });
+
+  const totalPrice = itemPrice.reduce((a, b) => a + b, 0);
 
   function onToggleCheck() {
     setCheck(!check);
@@ -115,9 +128,11 @@ export default function Cart() {
         <thead>
           <tr>
             <th>
-              <CheckBox onClick={onToggleCheck} />
+              <CheckBox onClick={onToggleCheck} check={check}>
+                {check ? <p>✔</p> : null}
+              </CheckBox>
             </th>
-            <th>전체 선택 3/3</th>
+            <th>전체 선택 {state.cart.length}</th>
             <th>상품명</th>
             <th>수량</th>
             <th>상품금액</th>
@@ -129,7 +144,9 @@ export default function Cart() {
             return (
               <tr key={i}>
                 <td>
-                  <CheckBox onClick={onToggleCheck} />
+                  <CheckBox onClick={onToggleCheck} check={check}>
+                    {check ? <p>✔</p> : null}
+                  </CheckBox>
                 </td>
                 <td>
                   <CartImg src={`https://ainruthpai.github.io/imgSrc/shoeshop/shoes${item.id + 1}.jpg`} />
@@ -151,7 +168,12 @@ export default function Cart() {
                   </CountBtn>
                 </td>
                 <td>{state.cart[i].price * state.cart[i].count}</td>
-                <td>delete</td>
+                <td
+                  onClick={() => {
+                    dispatch(removeItem(state.cart[i]));
+                  }}>
+                  <DeleteIcon>❌</DeleteIcon>
+                </td>
               </tr>
             );
           })}
@@ -159,7 +181,7 @@ export default function Cart() {
       </CartStyle>
       <CartPrice>
         <span>결제 예정 금액</span>
-        <p>123000원</p>
+        <p>{totalPrice}</p>
       </CartPrice>
       <BlueBtn>주문하기</BlueBtn>
     </CartContainer>
