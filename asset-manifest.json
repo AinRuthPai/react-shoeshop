@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/react-shoeshop/static/js/main.1c7966e2.js",
+    "main.js": "/react-shoeshop/static/js/main.1a36e59c.js",
     "static/media/shoes.jpg": "/react-shoeshop/static/media/shoes.24892210a509890a9755.jpg",
     "index.html": "/react-shoeshop/index.html",
-    "main.1c7966e2.js.map": "/react-shoeshop/static/js/main.1c7966e2.js.map"
+    "main.1a36e59c.js.map": "/react-shoeshop/static/js/main.1a36e59c.js.map"
   },
   "entrypoints": [
-    "static/js/main.1c7966e2.js"
+    "static/js/main.1a36e59c.js"
   ]
 }
