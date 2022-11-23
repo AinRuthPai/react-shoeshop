@@ -51,10 +51,10 @@ export default function Header() {
       <header>
         <h1 onClick={() => navigate("/react-shoeshop")}>ShoeShop</h1>
         <div>
-          <NavLink to='/itemall'>전체 상품</NavLink>
-          <NavLink to='/cart'>장바구니</NavLink>
-          <NavLink to='/info'>정보</NavLink>
-          <BtnStyle onClick={() => navigate("/login")}>로그인</BtnStyle>
+          <NavLink to='/react-shoeshop/itemall'>전체 상품</NavLink>
+          <NavLink to='/react-shoeshop/cart'>장바구니</NavLink>
+          <NavLink to='/react-shoeshop/info'>정보</NavLink>
+          <BtnStyle onClick={() => navigate("/react-shoeshop/login")}>로그인</BtnStyle>
         </div>
       </header>
     </HeaderStyle>

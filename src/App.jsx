@@ -35,12 +35,12 @@ export default function App() {
       <Header />
       <Routes>
         <Route path='/react-shoeshop' element={<MainPage data={data} />} />
-        <Route path='/detail/:id' element={<ItemDetail data={data} />} />
-        <Route path='/itemall' element={<ItemAll data={data} />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/info' element={<Info />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/*' element={<NotFound />} />
+        <Route path='/react-shoeshop/detail/:id' element={<ItemDetail data={data} />} />
+        <Route path='/react-shoeshop/itemall' element={<ItemAll data={data} />} />
+        <Route path='/react-shoeshop/cart' element={<Cart />} />
+        <Route path='/react-shoeshop/info' element={<Info />} />
+        <Route path='/react-shoeshop/login' element={<Login />} />
+        <Route path='/react-shoeshop/*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

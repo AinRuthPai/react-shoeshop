@@ -50,6 +50,19 @@ export const Menu = styled.div`
 `;
 
 export default function MainPage({ data }) {
+  const todayItem = [];
+  for (let i = 0; i < 7; i++) {
+    if (i > 0) {
+      const ran = data[Math.floor(Math.random() * data.length)];
+      if (todayItem.indexOf(ran) === -1) {
+        todayItem.push(ran);
+      } else {
+        i--;
+      }
+    }
+  }
+  console.log(todayItem);
+
   return (
     <>
       <Banner>
@@ -62,9 +75,9 @@ export default function MainPage({ data }) {
         <span>{`>`}</span>
       </Menu>
       <GridItem>
-        {data.map((data) => (
-          <Item data={data} key={data.id} />
-        ))}
+        {todayItem.map((data) => {
+          return <Item data={data} key={data.id} />;
+        })}
       </GridItem>
     </>
   );

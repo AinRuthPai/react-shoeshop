@@ -25,7 +25,7 @@ export default function Item({ data }) {
 
   return (
     <div>
-      <ItemWrapper onClick={() => navigate(`/detail/${data.id}`)}>
+      <ItemWrapper onClick={() => navigate(`/react-shoeshop/detail/${data.id}`)}>
         <ItemImg src={`https://ainruthpai.github.io/imgSrc/shoeshop/shoes${data.id + 1}.jpg`} />
         <h4>{data.title}</h4>
         <p>{data.content}</p>

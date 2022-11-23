@@ -1,6 +1,6 @@
 import { Menu } from "./MainPage";
 import styled, { css } from "styled-components";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCount, removeCount, removeItem } from "../store";
 
@@ -167,7 +167,7 @@ export default function Cart() {
                     +
                   </CountBtn>
                 </td>
-                <td>{state.cart[i].price * state.cart[i].count}</td>
+                <td>{`${state.cart[i].price * state.cart[i].count} 원`}</td>
                 <td
                   onClick={() => {
                     dispatch(removeItem(state.cart[i]));
@@ -181,7 +181,7 @@ export default function Cart() {
       </CartStyle>
       <CartPrice>
         <span>결제 예정 금액</span>
-        <p>{totalPrice}</p>
+        <p>{`${totalPrice} 원`}</p>
       </CartPrice>
       <BlueBtn>주문하기</BlueBtn>
     </CartContainer>
