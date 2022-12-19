@@ -4,13 +4,26 @@ import { Link, useNavigate } from "react-router-dom";
 const HeaderStyle = styled.div`
   width: 100%;
   height: 3.5rem;
-  border-bottom: 1px solid #008cff;
+  border-bottom: 1px solid #3d3d3d;
   > header {
     margin: 0 auto;
     width: 50%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media screen and (max-width: 992px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    > div {
+      @media screen and (max-width: 992px) {
+        display: none;
+      }
+    }
+
     > h1 {
       font-size: 1.5rem;
       cursor: pointer;
@@ -23,7 +36,7 @@ const NavLink = styled(Link)`
   color: black;
   margin-left: 1.5rem;
   &:hover {
-    border-bottom: 2px solid #008cff;
+    border-bottom: 2px solid #3d3d3d;
   }
 `;
 

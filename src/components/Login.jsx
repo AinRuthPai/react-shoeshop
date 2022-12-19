@@ -1,4 +1,7 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { login } from "../store";
 
 const FormDiv = styled.div`
   width: 100%;
@@ -21,13 +24,13 @@ const FormStyle = styled.form`
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     outline: none;
     &:focus {
-      border-bottom: 2px solid #008cff;
+      border-bottom: 2px solid #3d3d3d;
     }
   }
   > button {
     border: none;
     border-radius: 6px;
-    background-color: #008cff;
+    background-color: #3d3d3d;
     color: #fff;
     margin: 2rem;
     padding: 12px 16px;
@@ -38,11 +41,30 @@ const FormStyle = styled.form`
 `;
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const [text, setText] = useState("");
+  const [text2, setText2] = useState("");
+
+  function handleLoginForm(event) {
+    event.preventDefault();
+    dispatch(login({ email: text, password: text2 }));
+    setText("");
+    setText2("");
+  }
+
+  function onChange(e) {
+    setText(e.target.value);
+  }
+
+  function onChange2(e) {
+    setText2(e.target.value);
+  }
+
   return (
     <FormDiv>
-      <FormStyle>
-        <input type='text' placeholder='email' />
-        <input type='password' placeholder='password' />
+      <FormStyle onSubmit={handleLoginForm}>
+        <input type='text' placeholder='email' onChange={onChange} value={text} />
+        <input type='password' placeholder='password' onChange={onChange2} value={text2} />
         <button>로그인</button>
       </FormStyle>
       <div>

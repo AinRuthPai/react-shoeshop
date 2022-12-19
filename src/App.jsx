@@ -9,6 +9,7 @@ import Info from "./components/Info";
 import Login from "./components/Login";
 import ItemAll from "./components/ItemAll";
 import NotFound from "./components/NotFound";
+import Footer from "./components/Footer";
 
 const GlobalStyle = createGlobalStyle`
 @font-face {
@@ -19,10 +20,15 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
+  width: 80%;
   margin: 0 auto;
   text-align: center;
   font-family: 'Pretendard-Regular';
-  width: 90%;
+
+  @media screen and (max-width: 992px) {
+  /* footer height */
+  margin-bottom: 55px;
+  }
 }
 `;
 
@@ -42,6 +48,7 @@ export default function App() {
         <Route path='/react-shoeshop/login' element={<Login />} />
         <Route path='/react-shoeshop/*' element={<NotFound />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -1,37 +1,41 @@
 import styled from "styled-components";
-import bannerImg from "../shoes.jpg";
+import bannerImg from "../main_img.jpg";
 import Item from "./Item";
 
 const Banner = styled.div`
   width: 100%;
-  height: 50vh;
+  height: 60vh;
   background-image: url(${bannerImg});
-  background-size: 90%;
-  background-position: 150%;
+  background-size: cover;
+  background-position: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  font-size: 2.5rem;
-  color: #eee;
+  font-size: 40px;
+  color: #3d3d3d;
   padding-bottom: 1rem;
   > span:first-child {
-    margin-left: 15rem;
+    margin-left: 10%;
   }
   > span:nth-child(2) {
-    margin-left: 20rem;
+    margin-left: 15%;
   }
   > span:last-child {
-    margin-left: 25rem;
+    margin-left: 20%;
   }
 `;
 
 export const GridItem = styled.div`
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
   align-items: center;
-  padding: 0 5rem;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const Menu = styled.div`
@@ -42,7 +46,7 @@ export const Menu = styled.div`
   padding: 6px 16px;
   text-align: left;
   font-size: 1.5rem;
-  border-bottom: 2px solid #008cff;
+  border-bottom: 2px solid #3d3d3d;
   > span:last-child {
     position: absolute;
     right: 0;
@@ -51,8 +55,8 @@ export const Menu = styled.div`
 
 export default function MainPage({ data }) {
   const todayItem = [];
-  for (let i = 0; i < 7; i++) {
-    if (i > 0) {
+  for (let i = 0; i < 6; i++) {
+    if (i >= 0) {
       const ran = data[Math.floor(Math.random() * data.length)];
       if (todayItem.indexOf(ran) === -1) {
         todayItem.push(ran);
@@ -61,7 +65,6 @@ export default function MainPage({ data }) {
       }
     }
   }
-  console.log(todayItem);
 
   return (
     <>

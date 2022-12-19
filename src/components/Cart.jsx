@@ -54,7 +54,7 @@ const CartPrice = styled.div`
 `;
 
 export const BlueBtn = styled.button`
-  background-color: #008cff;
+  background-color: #3d3d3d;
   color: #fff;
   margin-top: 3rem;
   font-size: 14px;
@@ -66,7 +66,7 @@ export const BlueBtn = styled.button`
 const CheckBox = styled.div`
   width: 20px;
   height: 20px;
-  border: 1px solid #008cff;
+  border: 1px solid #3d3d3d;
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -75,7 +75,7 @@ const CheckBox = styled.div`
   ${(props) =>
     props.check &&
     css`
-      background-color: #008cff;
+      background-color: #3d3d3d;
       color: #fff;
     `}
 `;

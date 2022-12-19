@@ -2,15 +2,13 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export const ItemImg = styled.img`
-  width: 80%;
-  height: 80%;
-
+  width: 250px;
+  height: 300px;
   margin-top: 1rem;
 `;
 
 const ItemWrapper = styled.div`
-  width: 60%;
-  height: 70%;
+  width: 70%;
   cursor: pointer;
   margin: 1rem auto;
   transition: 0.1s ease;
@@ -24,13 +22,11 @@ export default function Item({ data }) {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <ItemWrapper onClick={() => navigate(`/react-shoeshop/detail/${data.id}`)}>
-        <ItemImg src={`https://ainruthpai.github.io/imgSrc/shoeshop/shoes${data.id + 1}.jpg`} />
-        <h4>{data.title}</h4>
-        <p>{data.content}</p>
-        <p>￦ {data.price}</p>
-      </ItemWrapper>
-    </div>
+    <ItemWrapper onClick={() => navigate(`/react-shoeshop/detail/${data.id}`)}>
+      <ItemImg src={`https://ainruthpai.github.io/imgSrc/shoeshop/shoes${data.id + 1}.jpg`} />
+      <h4>{data.title}</h4>
+      <p>{data.content}</p>
+      <p>￦ {data.price}</p>
+    </ItemWrapper>
   );
 }

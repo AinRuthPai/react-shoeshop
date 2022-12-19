@@ -7,15 +7,16 @@ import { addItem } from "../store";
 
 const DetailImg = styled.img`
   width: 40rem;
-  height: 40rem;
+  height: 30rem;
   object-fit: contain;
+  margin: 20px 0;
 `;
 
 const DetailItemBox = styled.div`
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
 
   > div {
     display: flex;
