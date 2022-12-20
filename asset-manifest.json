@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/react-shoeshop/static/js/main.5fbae19a.js",
-    "static/media/shoes.jpg": "/react-shoeshop/static/media/shoes.24892210a509890a9755.jpg",
+    "main.js": "/react-shoeshop/static/js/main.8d13afa7.js",
+    "static/media/main_img.jpg": "/react-shoeshop/static/media/main_img.4689cae864b8df005785.jpg",
     "index.html": "/react-shoeshop/index.html",
-    "main.5fbae19a.js.map": "/react-shoeshop/static/js/main.5fbae19a.js.map"
+    "main.8d13afa7.js.map": "/react-shoeshop/static/js/main.8d13afa7.js.map"
   },
   "entrypoints": [
-    "static/js/main.5fbae19a.js"
+    "static/js/main.8d13afa7.js"
   ]
 }
