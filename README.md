@@ -2,13 +2,22 @@
 
 ## 📌 서비스 링크
 
-- [링크](https://ainruthpai.github.io/react-shoeshop)
+- [서비스 링크](https://ainruthpai.github.io/react-shoeshop)
 
 ## 📌 화면
 
 ![main](/src/img/shoeshop1.png)
+
+---
+
 ![main](/src/img/shoeshop2.png)
+
+---
+
 ![main](/src/img/shoeshop3.png)
+
+---
+
 ![main](/src/img/shoeshop4.png)
 
 ## 📌 버전 정보
