@@ -29,6 +29,11 @@ body {
   /* footer height */
   margin-bottom: 55px;
   }
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 `;
 

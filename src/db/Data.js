@@ -39,7 +39,7 @@ const Data = [
   },
   {
     id: 6,
-    title: "shoes",
+    title: "Shoes",
     content: "only 7 inches",
     price: 140000,
   },
@@ -57,7 +57,7 @@ const Data = [
   },
   {
     id: 9,
-    title: "shoes",
+    title: "Shoes",
     content: "only 7 inches",
     price: 140000,
   },

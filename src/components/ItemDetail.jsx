@@ -4,6 +4,7 @@ import { Menu } from "./MainPage";
 import { BlueBtn } from "./Cart";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store";
+import Swal from "sweetalert2";
 
 const DetailImg = styled.img`
   width: 40rem;
@@ -49,7 +50,11 @@ export default function ItemDetail({ data }) {
           <BlueBtn
             onClick={() => {
               dispatch(addItem({ id: findItem.id, name: findItem.title, price: findItem.price, count: 1 }));
-              alert("장바구니에 상품이 추가되었습니다.");
+              Swal.fire({
+                icon: "success",
+                title: "완료!",
+                text: "장바구니에 상품이 추가되었습니다.",
+              });
             }}>
             장바구니 담기
           </BlueBtn>
