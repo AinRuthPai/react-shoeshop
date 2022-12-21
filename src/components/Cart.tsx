@@ -63,7 +63,7 @@ export const BlueBtn = styled.button`
   cursor: pointer;
 `;
 
-const CheckBox = styled.div`
+const CheckBox = styled.div<any>`
   width: 20px;
   height: 20px;
   border: 1px solid #3d3d3d;
@@ -72,7 +72,7 @@ const CheckBox = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  ${(props) =>
+  ${(props: any) =>
     props.check &&
     css`
       background-color: #3d3d3d;
@@ -104,15 +104,15 @@ const DeleteIcon = styled.button`
 `;
 
 export default function Cart() {
-  const state = useSelector((state) => state);
+  const state: any = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [check, setCheck] = useState(true);
+  const [check, setCheck] = useState<boolean>(true);
 
-  const itemPrice = state.cart.map((state) => {
-    return Object.values(state)[2] * state.count;
+  const itemPrice = state.cart.map((state: any) => {
+    return Object.values<any>(state)[2] * state.count;
   });
 
-  const totalPrice = itemPrice.reduce((a, b) => a + b, 0);
+  const totalPrice = itemPrice.reduce((a: any, b: any) => a + b, 0);
 
   function onToggleCheck() {
     setCheck(!check);
@@ -140,7 +140,7 @@ export default function Cart() {
           </tr>
         </thead>
         <tbody>
-          {state.cart.map((item, i) => {
+          {state.cart.map((item: any, i: any) => {
             return (
               <tr key={i}>
                 <td>

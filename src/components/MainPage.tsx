@@ -53,7 +53,7 @@ export const Menu = styled.div`
   }
 `;
 
-export default function MainPage({ data }) {
+export default function MainPage({ data }: any) {
   const todayItem = [];
   for (let i = 0; i < 6; i++) {
     if (i >= 0) {
@@ -78,7 +78,7 @@ export default function MainPage({ data }) {
         <span>{`>`}</span>
       </Menu>
       <GridItem>
-        {todayItem.map((data) => {
+        {todayItem.map((data: any) => {
           return <Item data={data} key={data.id} />;
         })}
       </GridItem>

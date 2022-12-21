@@ -45,18 +45,18 @@ export default function Login() {
   const [text, setText] = useState("");
   const [text2, setText2] = useState("");
 
-  function handleLoginForm(event) {
+  function handleLoginForm(event: any) {
     event.preventDefault();
     dispatch(login({ email: text, password: text2 }));
     setText("");
     setText2("");
   }
 
-  function onChange(e) {
+  function onChange(e: any) {
     setText(e.target.value);
   }
 
-  function onChange2(e) {
+  function onChange2(e: any) {
     setText2(e.target.value);
   }
 

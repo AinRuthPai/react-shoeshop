@@ -18,7 +18,7 @@ const ItemWrapper = styled.div`
   }
 `;
 
-export default function Item({ data }) {
+export default function Item({ data }: any) {
   const navigate = useNavigate();
 
   return (

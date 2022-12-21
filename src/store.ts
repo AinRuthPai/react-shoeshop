@@ -1,12 +1,12 @@
-import { configureStore, createSlice, current } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const cartStore = createSlice({
   name: "cart",
   initialState: [],
   reducers: {
-    addItem(state, action) {
+    addItem(state: any, action: any) {
       const newItem = action.payload;
-      const checkItem = state.find((item) => item.id === newItem.id);
+      const checkItem = state.find((item: any) => item.id === newItem.id);
 
       if (!checkItem) {
         state.push(action.payload);
@@ -17,16 +17,16 @@ const cartStore = createSlice({
 
     removeItem(state, action) {
       state.splice(
-        state.findIndex((item) => item.id === action.payload.id),
+        state.findIndex((item: any) => item.id === action.payload.id),
         1
       );
     },
 
-    addCount(state, action) {
+    addCount(state: any, action: any) {
       state[action.payload].count++;
     },
 
-    removeCount(state, action) {
+    removeCount(state: any, action: any) {
       if (state[action.payload].count > 1) {
         state[action.payload].count--;
       } else {
@@ -40,15 +40,15 @@ const loginStore = createSlice({
   name: "login",
   initialState: [],
   reducers: {
-    login(state, action) {
+    login(state: any, action: any) {
       state.push(action.payload);
       console.log(action.payload);
     },
   },
 });
 
-export const { addCount, removeCount, addItem, removeItem } = cartStore.actions;
-export const { login } = loginStore.actions;
+export const { addCount, removeCount, addItem, removeItem }: any = cartStore.actions;
+export const { login }: any = loginStore.actions;
 
 export default configureStore({
   reducer: {

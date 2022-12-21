@@ -27,11 +27,11 @@ const DetailItemBox = styled.div`
   }
 `;
 
-export default function ItemDetail({ data }) {
+export default function ItemDetail({ data }: any) {
   let { id } = useParams();
   const dispatch = useDispatch();
 
-  const findItem = data.find((item) => {
+  const findItem = data.find((item: any) => {
     return item.id === Number(id);
   });
 

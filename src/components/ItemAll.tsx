@@ -1,7 +1,7 @@
 import { Menu, GridItem } from "./MainPage";
 import Item from "./Item";
 
-export default function ItemAll({ data }) {
+export default function ItemAll({ data }: any) {
   return (
     <>
       <Menu>
@@ -9,7 +9,7 @@ export default function ItemAll({ data }) {
         <span>{`>`}</span>
       </Menu>
       <GridItem>
-        {data.map((data) => (
+        {data.map((data: any) => (
           <Item data={data} key={data.id} />
         ))}
       </GridItem>
