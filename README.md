@@ -43,3 +43,61 @@
     "sweetalert2": "^11.6.15",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4"
+
+## 📌 규칙
+
+### 1) 코드 순서
+
+- import package
+
+- import components / element
+
+- import redux / api
+
+- const dispatch = useDispatch();
+
+- const [state, useState] = useState();
+
+- const result = useSelector(state ⇒ state.reducer.action)
+
+- useEffect
+
+- return ()
+
+- styled-component
+
+### 2) CSS(styled-components) 순서
+
+- position
+
+- display
+
+- width/height
+
+- margin/padding
+
+- color 관련
+
+- text 관련
+
+- tranform, transition, animation
+
+- 기타
+
+### 3) commit rules
+
+- add : asset, dependency 추가 하는 경우 (이미지 파일)
+
+- feat : 새로운 기능 추가, view 포함
+
+- edit : 코드를 수정한 경우 (fix가 아님)
+
+- fix : 버그 수정
+
+- docs : 문서 수정 (readme)
+
+- style : css style code 수정
+
+- refactor : 코드 리팩토링
+
+- chore : 빌드 업무 수정, 패키지 매니저 수정
