@@ -1,44 +1,7 @@
+import styled from "styled-components";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import styled from "styled-components";
 import { login } from "../store";
-
-const FormDiv = styled.div`
-  width: 100%;
-  height: 30vh;
-  margin: 5rem auto;
-`;
-
-const FormStyle = styled.form`
-  width: 50%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  > input {
-    width: 70%;
-    margin: 1rem;
-    padding: 0.5rem;
-    font-size: 16px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    outline: none;
-    &:focus {
-      border-bottom: 2px solid #3d3d3d;
-    }
-  }
-  > button {
-    border: none;
-    border-radius: 6px;
-    background-color: #3d3d3d;
-    color: #fff;
-    margin: 2rem;
-    padding: 12px 16px;
-    width: 30%;
-    cursor: pointer;
-    font-size: 14px;
-  }
-`;
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -74,3 +37,40 @@ export default function Login() {
     </FormDiv>
   );
 }
+
+const FormDiv = styled.div`
+  width: 100%;
+  height: 50vh;
+  margin: 80px auto;
+`;
+
+const FormStyle = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+  > input {
+    width: 70%;
+    margin: 1rem;
+    padding: 0.5rem;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    outline: none;
+    &:focus {
+      border-bottom: 2px solid #3d3d3d;
+    }
+  }
+  > button {
+    width: 30%;
+    margin: 2rem;
+    padding: 12px 16px;
+    background-color: #3d3d3d;
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+`;

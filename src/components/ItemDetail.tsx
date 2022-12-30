@@ -1,35 +1,14 @@
 import styled from "styled-components";
+import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import { Menu } from "./MainPage";
-import { BlueBtn } from "./Cart";
+import { BtnStyle } from "./Cart";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store";
-import Swal from "sweetalert2";
-
-const DetailImg = styled.img`
-  width: 40rem;
-  height: 30rem;
-  object-fit: contain;
-  margin: 20px 0;
-`;
-
-const DetailItemBox = styled.div`
-  width: 80%;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-`;
 
 export default function ItemDetail({ data }: any) {
-  let { id } = useParams();
   const dispatch = useDispatch();
+  let { id } = useParams();
 
   const findItem = data.find((item: any) => {
     return item.id === Number(id);
@@ -47,7 +26,7 @@ export default function ItemDetail({ data }: any) {
           <h3>{findItem.title}</h3>
           <p>{findItem.content}</p>
           <p>￦ {findItem.price}</p>
-          <BlueBtn
+          <BtnStyle
             onClick={() => {
               dispatch(addItem({ id: findItem.id, name: findItem.title, price: findItem.price, count: 1 }));
               Swal.fire({
@@ -57,9 +36,30 @@ export default function ItemDetail({ data }: any) {
               });
             }}>
             장바구니 담기
-          </BlueBtn>
+          </BtnStyle>
         </div>
       </DetailItemBox>
     </>
   );
 }
+
+const DetailImg = styled.img`
+  width: 40rem;
+  height: 30rem;
+  margin: 20px 0;
+  object-fit: contain;
+`;
+
+const DetailItemBox = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 80%;
+  margin: 0 auto;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`;

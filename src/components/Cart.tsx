@@ -1,112 +1,13 @@
-import { Menu } from "./MainPage";
 import styled, { css } from "styled-components";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Menu } from "./MainPage";
 import { addCount, removeCount, removeItem } from "../store";
 
-const CartContainer = styled.div`
-  position: relative;
-  width: 70%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-`;
-
-const CartStyle = styled.table`
-  border: 1px solid black;
-  width: 100%;
-  height: 100%;
-  margin: 2rem auto;
-  border-collapse: collapse;
-  > thead > tr > th {
-    border-bottom: 1px solid black;
-    padding: 10px 12px;
-    background-color: #f4f4f4;
-  }
-
-  > tbody > tr > td {
-    padding: 8px 10px;
-  }
-`;
-
-const CartPrice = styled.div`
-  border: 1px solid black;
-  width: 20rem;
-  height: 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
-  margin-top: 5rem;
-  background-color: #f4f4f4;
-
-  > span {
-    font-size: 16px;
-  }
-
-  > p {
-    font-size: 20px;
-    font-weight: bold;
-  }
-`;
-
-export const BlueBtn = styled.button`
-  background-color: #3d3d3d;
-  color: #fff;
-  margin-top: 3rem;
-  font-size: 14px;
-  padding: 0.7rem 2.5rem;
-  border: none;
-  cursor: pointer;
-`;
-
-const CheckBox = styled.div<any>`
-  width: 20px;
-  height: 20px;
-  border: 1px solid #3d3d3d;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  ${(props: any) =>
-    props.check &&
-    css`
-      background-color: #3d3d3d;
-      color: #fff;
-    `}
-`;
-
-const CountBtn = styled.button`
-  border: none;
-  margin: 0 8px;
-  padding: 0 6px;
-  background-color: #f4f4f4;
-  cursor: pointer;
-  font-size: 20px;
-`;
-
-const CartImg = styled.img`
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-`;
-
-const DeleteIcon = styled.button`
-  cursor: pointer;
-  background-color: white;
-  border: none;
-  font-size: 20px;
-  padding: 0;
-`;
-
 export default function Cart() {
-  const state: any = useSelector((state) => state);
   const dispatch = useDispatch();
   const [check, setCheck] = useState<boolean>(true);
+  const state: any = useSelector((state) => state);
 
   const itemPrice = state.cart.map((state: any) => {
     return Object.values<any>(state)[2] * state.count;
@@ -183,7 +84,105 @@ export default function Cart() {
         <span>결제 예정 금액</span>
         <p>{`${totalPrice} 원`}</p>
       </CartPrice>
-      <BlueBtn>주문하기</BlueBtn>
+      <BtnStyle>주문하기</BtnStyle>
     </CartContainer>
   );
 }
+
+const CartContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  width: 70%;
+  height: 100%;
+  margin: 0 auto;
+`;
+
+const CartStyle = styled.table`
+  width: 100%;
+  height: 100%;
+  margin: 32px auto;
+  border: 1px solid black;
+  border-collapse: collapse;
+  > thead > tr > th {
+    padding: 10px 12px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid black;
+  }
+
+  > tbody > tr > td {
+    padding: 8px 10px;
+  }
+`;
+
+const CartPrice = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 320px;
+  height: 64px;
+  margin-top: 5%;
+  padding: 0 32px;
+  background-color: #f4f4f4;
+  border: 1px solid black;
+
+  > span {
+    font-size: 16px;
+  }
+
+  > p {
+    font-size: 20px;
+    font-weight: bold;
+  }
+`;
+
+export const BtnStyle = styled.button`
+  margin-top: 3%;
+  padding: 12px 40px;
+  background-color: #3d3d3d;
+  color: #fff;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+`;
+
+const CheckBox = styled.div<any>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  border: 1px solid #3d3d3d;
+  cursor: pointer;
+  ${(props: any) =>
+    props.check &&
+    css`
+      background-color: #3d3d3d;
+      color: #fff;
+    `}
+`;
+
+const CountBtn = styled.button`
+  margin: 0 8px;
+  padding: 0 6px;
+  background-color: #f4f4f4;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+`;
+
+const CartImg = styled.img`
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+`;
+
+const DeleteIcon = styled.button`
+  padding: 0;
+  background-color: #fff;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+`;

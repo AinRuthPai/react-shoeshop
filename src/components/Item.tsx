@@ -1,22 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-export const ItemImg = styled.img`
-  width: 250px;
-  height: 300px;
-  margin-top: 1rem;
-`;
-
-const ItemWrapper = styled.div`
-  width: 70%;
-  cursor: pointer;
-  margin: 1rem auto;
-  transition: 0.1s ease;
-  &:hover {
-    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-  }
-`;
+import { useNavigate } from "react-router-dom";
 
 export default function Item({ data }: any) {
   const navigate = useNavigate();
@@ -30,3 +13,26 @@ export default function Item({ data }: any) {
     </ItemWrapper>
   );
 }
+
+export const ItemImg = styled.img`
+  width: 250px;
+  height: 300px;
+  margin-top: 16px;
+
+  @media screen and (max-width: 768px) {
+    width: 150px;
+    height: 200px;
+  }
+`;
+
+const ItemWrapper = styled.div`
+  width: 70%;
+  margin: 16px auto;
+  transition: 0.1s ease;
+  cursor: pointer;
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+  }
+`;

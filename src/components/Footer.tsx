@@ -1,41 +1,53 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-
-const FooterBox = styled.footer`
-  display: none;
-
-  @media screen and (max-width: 992px) {
-    display: block;
-    position: fixed;
-    width: 100%;
-    height: 55px;
-    /* border: 1px solid #008cff; */
-    background-color: #ebecee;
-    z-index: 99;
-    bottom: 0;
-  }
-
-  > div {
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-`;
-
-const FooterLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-`;
 
 export default function Footer() {
   return (
     <FooterBox>
       <div>
-        <FooterLink to='/react-shoeshop/itemall'>전체상품</FooterLink>
-        <FooterLink to='/react-shoeshop'>home</FooterLink>
-        <FooterLink to='/react-shoeshop/cart'>장바구니</FooterLink>
+        <h1>ShoeShop</h1>
+        <p>Fasion Shoes Collection</p>
       </div>
+
+      <div>
+        <span>소개</span> | <span>운영 정책</span> | <span>개인정보 처리 및 취급방침</span>
+      </div>
+
+      <p>Copyright © ShoeShop All Rights Reserved</p>
     </FooterBox>
   );
 }
+
+const FooterBox = styled.footer`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  height: 200px;
+  margin-top: 20px;
+  background-color: black;
+  color: #fff;
+
+  > div:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    > h1 {
+      margin-right: 8px;
+      font-size: 26px;
+    }
+
+    > p {
+      color: aqua;
+    }
+  }
+
+  span {
+    margin: 4px 6px;
+    cursor: pointer;
+  }
+
+  > p {
+    color: #f4f4f4;
+  }
+`;

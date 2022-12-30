@@ -1,4 +1,4 @@
-const Data = [
+export const Data = [
   {
     id: 0,
     title: "White and Black",
@@ -74,5 +74,3 @@ const Data = [
     price: 160000,
   },
 ];
-
-export default Data;
