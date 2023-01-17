@@ -58,14 +58,14 @@ export default function Cart() {
                     onClick={() => {
                       dispatch(removeCount(i));
                     }}>
-                    -
+                    <span className='material-symbols-outlined'>remove</span>
                   </CountBtn>
                   {state.cart[i].count}
                   <CountBtn
                     onClick={() => {
                       dispatch(addCount(i));
                     }}>
-                    +
+                    <span className='material-symbols-outlined'>add</span>
                   </CountBtn>
                 </td>
                 <td>{`${state.cart[i].price * state.cart[i].count} 원`}</td>
@@ -73,7 +73,9 @@ export default function Cart() {
                   onClick={() => {
                     dispatch(removeItem(state.cart[i]));
                   }}>
-                  <DeleteIcon>❌</DeleteIcon>
+                  <DeleteIcon>
+                    <span className='material-symbols-outlined'>delete</span>
+                  </DeleteIcon>
                 </td>
               </tr>
             );
@@ -92,26 +94,25 @@ export default function Cart() {
 const CartContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-end;
-  width: 70%;
-  height: 100%;
+  width: 100%;
+  min-height: calc(100vh - 12rem);
   margin: 0 auto;
 `;
 
 const CartStyle = styled.table`
   width: 100%;
   height: 100%;
-  margin: 32px auto;
-  border: 1px solid black;
+  margin: 1rem auto;
   border-collapse: collapse;
-  > thead > tr > th {
-    padding: 10px 12px;
+
+  thead tr th {
+    padding: 8px 10px;
     background-color: #f4f4f4;
     border-bottom: 1px solid black;
   }
 
-  > tbody > tr > td {
+  tbody tr td {
     padding: 8px 10px;
   }
 `;
@@ -122,29 +123,30 @@ const CartPrice = styled.div`
   align-items: center;
   width: 320px;
   height: 64px;
-  margin-top: 5%;
+  margin: 5%;
   padding: 0 32px;
   background-color: #f4f4f4;
   border: 1px solid black;
 
   > span {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   > p {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
   }
 `;
 
 export const BtnStyle = styled.button`
-  margin-top: 3%;
+  margin: 5%;
   padding: 12px 40px;
   background-color: #3d3d3d;
   color: #fff;
   font-size: 14px;
   border: none;
   cursor: pointer;
+  border-radius: 6px;
 `;
 
 const CheckBox = styled.div<any>`
@@ -165,17 +167,17 @@ const CheckBox = styled.div<any>`
 `;
 
 const CountBtn = styled.button`
-  margin: 0 8px;
-  padding: 0 6px;
+  margin: 4px 10px;
+  padding: 4px 6px;
   background-color: #f4f4f4;
-  font-size: 20px;
+  font-size: 10px;
   border: none;
   cursor: pointer;
 `;
 
 const CartImg = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
 `;
 

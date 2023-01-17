@@ -29,29 +29,35 @@ export default function Login() {
         <input type='text' placeholder='email' onChange={onChange} value={text} />
         <input type='password' placeholder='password' onChange={onChange2} value={text2} />
         <button>로그인</button>
+        <div>
+          <span>{`아직 계정이 없으신가요? ->`} </span>
+          <span>회원가입</span>
+        </div>
       </FormStyle>
-      <div>
-        <span>{`아직 계정이 없으신가요? ->`} </span>
-        <span>회원가입</span>
-      </div>
     </FormDiv>
   );
 }
 
 const FormDiv = styled.div`
   width: 100%;
-  height: 50vh;
-  margin: 80px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  min-height: calc(100vh - 12rem);
 `;
 
 const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+  width: 90%;
   margin: 0 auto;
+  padding: 18px 10px;
+
   > input {
-    width: 70%;
+    width: 100%;
     margin: 1rem;
     padding: 0.5rem;
     font-size: 16px;
@@ -63,12 +69,11 @@ const FormStyle = styled.form`
     }
   }
   > button {
-    width: 30%;
-    margin: 2rem;
-    padding: 12px 16px;
+    margin: 1rem;
+    padding: 8px 16px;
     background-color: #3d3d3d;
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     border: none;
     border-radius: 6px;
     cursor: pointer;

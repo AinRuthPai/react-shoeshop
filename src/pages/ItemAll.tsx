@@ -1,5 +1,5 @@
 import { Menu, GridItem } from "./MainPage";
-import Item from "./Item";
+import Item from "../components/Item";
 
 export default function ItemAll({ data }: any) {
   return (

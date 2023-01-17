@@ -1,6 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const cartStore = createSlice({
+const cartSlice = createSlice({
   name: "cart",
   initialState: [],
   reducers: {
@@ -36,7 +36,7 @@ const cartStore = createSlice({
   },
 });
 
-const loginStore = createSlice({
+const loginSlice = createSlice({
   name: "login",
   initialState: [],
   reducers: {
@@ -47,12 +47,14 @@ const loginStore = createSlice({
   },
 });
 
-export const { addCount, removeCount, addItem, removeItem }: any = cartStore.actions;
-export const { login }: any = loginStore.actions;
+export const { addCount, removeCount, addItem, removeItem }: any = cartSlice.actions;
+export const { login }: any = loginSlice.actions;
 
-export default configureStore({
+const store = configureStore({
   reducer: {
-    cart: cartStore.reducer,
-    login: loginStore.reducer,
+    cart: cartSlice.reducer,
+    login: loginSlice.reducer,
   },
 });
+
+export default store;

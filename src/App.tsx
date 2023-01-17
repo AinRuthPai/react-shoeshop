@@ -1,20 +1,22 @@
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Data } from "./db/Data";
-import MainPage from "./components/MainPage";
+import MainPage from "./pages/MainPage";
 import Header from "./components/Header";
-import Cart from "./components/Cart";
-import ItemDetail from "./components/ItemDetail";
-import Login from "./components/Login";
-import ItemAll from "./components/ItemAll";
-import NotFound from "./components/NotFound";
+import Cart from "./pages/Cart";
+import ItemDetail from "./pages/ItemDetail";
+import Login from "./pages/Login";
+import ItemAll from "./pages/ItemAll";
+import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
+import ScrollTop from "./ScrollTop";
 
 export default function App() {
   const data = Data;
 
   return (
     <BrowserRouter>
+      <ScrollTop />
       <GlobalStyle />
       <Header />
       <Routes>
@@ -32,11 +34,18 @@ export default function App() {
 
 const GlobalStyle = createGlobalStyle`
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto ;
   text-align: center;
   font-family: 'Pretendard-Regular';
+  animation: fadein 2s;
 
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -48,6 +57,15 @@ body {
       src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
       font-weight: 400;
       font-style: normal;
+  }
+  
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 }
 `;
