@@ -1,11 +1,14 @@
 {
   "files": {
-    "main.js": "/react-shoeshop/static/js/main.92faefea.js",
+    "main.css": "/react-shoeshop/static/css/main.c1664ab2.css",
+    "main.js": "/react-shoeshop/static/js/main.3b7e2b9f.js",
     "static/media/main_img.jpg": "/react-shoeshop/static/media/main_img.4689cae864b8df005785.jpg",
     "index.html": "/react-shoeshop/index.html",
-    "main.92faefea.js.map": "/react-shoeshop/static/js/main.92faefea.js.map"
+    "main.c1664ab2.css.map": "/react-shoeshop/static/css/main.c1664ab2.css.map",
+    "main.3b7e2b9f.js.map": "/react-shoeshop/static/js/main.3b7e2b9f.js.map"
   },
   "entrypoints": [
-    "static/js/main.92faefea.js"
+    "static/css/main.c1664ab2.css",
+    "static/js/main.3b7e2b9f.js"
   ]
 }
