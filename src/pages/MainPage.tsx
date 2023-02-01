@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { useRef } from "react";
+import Brand from "../components/Brand";
 
 export default function MainPage({ data }: any) {
   const todayItem = [];
@@ -30,22 +31,24 @@ export default function MainPage({ data }: any) {
 
   return (
     <>
-      <Banner>
+      <MainPageBanner>
         <span>FASHION</span>
         <span>SHOES</span>
         <span>COLLECTION</span>
         <span className='material-symbols-outlined' onClick={scrollToElement}>
           expand_more
         </span>
-      </Banner>
+      </MainPageBanner>
+      <Brand />
+
       <Menu>
         <span ref={ref}>추천 상품</span>
         <span className='material-symbols-outlined'>arrow_forward_ios</span>
       </Menu>
-      <GridItem>
+      <SortingItemWrapper>
         <Swiper
           modules={[Navigation, Pagination]}
-          spaceBetween={50}
+          spaceBetween={30}
           slidesPerView={1}
           navigation
           breakpoints={{
@@ -70,12 +73,12 @@ export default function MainPage({ data }: any) {
             );
           })}
         </Swiper>
-      </GridItem>
+      </SortingItemWrapper>
     </>
   );
 }
 
-const Banner = styled.div`
+const MainPageBanner = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -84,7 +87,7 @@ const Banner = styled.div`
   height: 60vh;
   margin: 5rem auto 0;
   padding-bottom: 16px;
-  color: #3d3d3d;
+  color: var(--black);
   font-size: 2.5rem;
   background-image: url(${bannerImg});
   background-size: cover;
@@ -138,25 +141,22 @@ const Banner = styled.div`
   }
 `;
 
-export const GridItem = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+export const SortingItemWrapper = styled.div`
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  margin: 0 auto;
   font-family: "Poppins", sans-serif;
 
   .swiper-wrapper,
   .swiper-slide {
-    width: 400px;
+    width: 350px;
 
     @media screen and (min-width: 768px) {
-      width: 700px;
+      width: 650px;
     }
 
     @media screen and (min-width: 1024px) {
-      width: 1250px;
+      width: 1350px;
     }
   }
 
@@ -174,7 +174,7 @@ export const Menu = styled.div`
   margin-top: 5rem;
   padding: 6px 16px;
   font-size: 24px;
-  border-bottom: 2px solid #3d3d3d;
+  border-bottom: 2px solid var(--black);
   text-align: left;
 
   > span:last-child {

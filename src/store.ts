@@ -1,4 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+// import { User } from "./db/User";
 
 const cartSlice = createSlice({
   name: "cart",
@@ -42,7 +44,15 @@ const loginSlice = createSlice({
   reducers: {
     login(state: any, action: any) {
       state.push(action.payload);
-      console.log(action.payload);
+      console.log(action.payload.email);
+      console.log(action.payload.password);
+      axios
+        .post("http://localhost:5000/signup", {
+          email: action.payload.email,
+          password: action.payload.password,
+        })
+        .then((res) => console.log(res))
+        .catch((error) => console.log(error));
     },
   },
 });

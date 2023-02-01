@@ -9,14 +9,14 @@ import Login from "./pages/Login";
 import ItemAll from "./pages/ItemAll";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
-import ScrollTop from "./ScrollTop";
+import ScrollToTop from "./ScrollToTop";
 
 export default function App() {
   const data = Data;
 
   return (
     <BrowserRouter>
-      <ScrollTop />
+      <ScrollToTop />
       <GlobalStyle />
       <Header />
       <Routes>
@@ -33,6 +33,17 @@ export default function App() {
 }
 
 const GlobalStyle = createGlobalStyle`
+
+:root {
+  /* size */
+  --footer-height: 10rem;
+  --nav-height: 4rem;
+  
+  /* color */
+  --white: #fff;
+  --black: #3d3d3d;
+  --gray: #f4f4f4;
+}
 
 * {
   box-sizing: border-box;

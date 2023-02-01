@@ -25,7 +25,7 @@ export default function Cart() {
         <span>장바구니</span>
         <span>{`>`}</span>
       </Menu>
-      <CartStyle>
+      <CartTable>
         <thead>
           <tr>
             <th>
@@ -60,7 +60,7 @@ export default function Cart() {
                     }}>
                     <span className='material-symbols-outlined'>remove</span>
                   </CountBtn>
-                  {state.cart[i].count}
+                  <span>{state.cart[i].count}</span>
                   <CountBtn
                     onClick={() => {
                       dispatch(addCount(i));
@@ -81,12 +81,12 @@ export default function Cart() {
             );
           })}
         </tbody>
-      </CartStyle>
+      </CartTable>
       <CartPrice>
         <span>결제 예정 금액</span>
         <p>{`${totalPrice} 원`}</p>
       </CartPrice>
-      <BtnStyle>주문하기</BtnStyle>
+      <BtnTamplate>주문하기</BtnTamplate>
     </CartContainer>
   );
 }
@@ -96,11 +96,11 @@ const CartContainer = styled.div`
   flex-direction: column;
   align-items: flex-end;
   width: 100%;
-  min-height: calc(100vh - 12rem);
+  min-height: calc(100vh - 9rem);
   margin: 0 auto;
 `;
 
-const CartStyle = styled.table`
+const CartTable = styled.table`
   width: 100%;
   height: 100%;
   margin: 1rem auto;
@@ -108,12 +108,12 @@ const CartStyle = styled.table`
 
   thead tr th {
     padding: 8px 10px;
-    background-color: #f4f4f4;
+    background-color: var(--gray);
     border-bottom: 1px solid black;
   }
 
   tbody tr td {
-    padding: 8px 10px;
+    padding: 8px;
   }
 `;
 
@@ -125,7 +125,7 @@ const CartPrice = styled.div`
   height: 64px;
   margin: 5%;
   padding: 0 32px;
-  background-color: #f4f4f4;
+  background-color: var(--gray);
   border: 1px solid black;
 
   > span {
@@ -138,11 +138,11 @@ const CartPrice = styled.div`
   }
 `;
 
-export const BtnStyle = styled.button`
+export const BtnTamplate = styled.button`
   margin: 5%;
   padding: 12px 40px;
-  background-color: #3d3d3d;
-  color: #fff;
+  background-color: var(--black);
+  color: var(--white);
   font-size: 14px;
   border: none;
   cursor: pointer;
@@ -156,23 +156,26 @@ const CheckBox = styled.div<any>`
   width: 20px;
   height: 20px;
   font-size: 16px;
-  border: 1px solid #3d3d3d;
+  border: 1px solid var(--black);
   cursor: pointer;
   ${(props: any) =>
     props.check &&
     css`
-      background-color: #3d3d3d;
-      color: #fff;
+      background-color: var(--black);
+      color: var(--white);
     `}
 `;
 
 const CountBtn = styled.button`
-  margin: 4px 10px;
-  padding: 4px 6px;
-  background-color: #f4f4f4;
-  font-size: 10px;
+  margin: 4px 8px;
+  padding: 2px 4px;
+  background-color: var(--gray);
   border: none;
   cursor: pointer;
+
+  span {
+    font-size: 1.2rem;
+  }
 `;
 
 const CartImg = styled.img`
@@ -183,7 +186,7 @@ const CartImg = styled.img`
 
 const DeleteIcon = styled.button`
   padding: 0;
-  background-color: #fff;
+  background-color: var(--white);
   font-size: 20px;
   border: none;
   cursor: pointer;

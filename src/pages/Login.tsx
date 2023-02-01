@@ -24,7 +24,7 @@ export default function Login() {
   }
 
   return (
-    <FormDiv>
+    <FormContainer>
       <FormStyle onSubmit={handleLoginForm}>
         <input type='text' placeholder='email' onChange={onChange} value={text} />
         <input type='password' placeholder='password' onChange={onChange2} value={text2} />
@@ -34,18 +34,18 @@ export default function Login() {
           <span>회원가입</span>
         </div>
       </FormStyle>
-    </FormDiv>
+    </FormContainer>
   );
 }
 
-const FormDiv = styled.div`
+const FormContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  min-height: calc(100vh - 12rem);
+  min-height: calc(100vh - 9rem);
 `;
 
 const FormStyle = styled.form`
@@ -65,13 +65,13 @@ const FormStyle = styled.form`
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     outline: none;
     &:focus {
-      border-bottom: 2px solid #3d3d3d;
+      border-bottom: 2px solid var(--black);
     }
   }
   > button {
     margin: 1rem;
     padding: 8px 16px;
-    background-color: #3d3d3d;
+    background-color: var(--black);
     color: #fff;
     font-size: 16px;
     border: none;

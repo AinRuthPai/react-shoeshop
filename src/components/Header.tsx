@@ -1,21 +1,48 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
+import { useRef, useEffect } from "react";
 
 export default function Header() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const targetRef: any = useRef(null);
+  let prevScrollTop = 0;
 
   function toggleMenuOpen() {
     setIsOpen(!isOpen);
   }
 
+  function handleScroll() {
+    let nextScrollTop = window.pageYOffset || 0;
+    if (nextScrollTop > prevScrollTop) {
+      // 스크롤 내릴 때 실행
+      // targetRef.current.style.translate = "0 -64px";
+      targetRef.current.style.display = "none";
+    } else if (nextScrollTop < prevScrollTop) {
+      // 스크롤 올릴 때 실행
+      // targetRef.current.style.translate = "0 0";
+      targetRef.current.style.display = "flex";
+    }
+    prevScrollTop = nextScrollTop;
+  }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      window.addEventListener("scroll", handleScroll);
+    }, 100);
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <HeaderStyle>
-      <HeaderOverlay open={isOpen} onClick={toggleMenuOpen} />
+    <NavContainer ref={targetRef}>
+      <NavOverlay open={isOpen} onClick={toggleMenuOpen} />
       <h1 onClick={() => navigate("/react-shoeshop")}>ShoeShop</h1>
       <header>
-        <HeaderMenu open={isOpen}>
+        <NavMenu open={isOpen}>
           <NavLink to='/react-shoeshop/'>
             <span className='material-symbols-outlined'>home</span>메인 화면
           </NavLink>
@@ -29,9 +56,9 @@ export default function Header() {
           <NavLink to='/react-shoeshop/login'>
             <span className='material-symbols-outlined'>login</span>로그인
           </NavLink>
-        </HeaderMenu>
+        </NavMenu>
       </header>
-      <MobileNavBar>
+      <NavMobile>
         <span
           className='material-symbols-outlined'
           onClick={() => {
@@ -42,12 +69,12 @@ export default function Header() {
         <span className='material-symbols-outlined' onClick={toggleMenuOpen}>
           menu
         </span>
-      </MobileNavBar>
-    </HeaderStyle>
+      </NavMobile>
+    </NavContainer>
   );
 }
 
-const HeaderStyle = styled.div`
+const NavContainer = styled.nav`
   position: fixed;
   z-index: 97;
   top: 0;
@@ -55,10 +82,20 @@ const HeaderStyle = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 4rem;
+  height: var(--nav-height);
   padding: 0 1rem;
-  background-color: #fff;
+  background-color: white;
   box-shadow: 2px 1px 2px 1px rgba(0, 0, 0, 0.2);
+  animation: fadein 0.5s;
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   header {
     display: flex;
@@ -67,9 +104,11 @@ const HeaderStyle = styled.div`
   }
 
   h1 {
-    display: none;
+    position: absolute;
+    font-size: 1.3rem;
 
     @media screen and (min-width: 700px) {
+      position: static;
       display: block;
       font-size: 1.5rem;
       cursor: pointer;
@@ -77,22 +116,7 @@ const HeaderStyle = styled.div`
   }
 `;
 
-const MobileNavBar = styled.nav`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  @media screen and (min-width: 700px) {
-    display: none;
-  }
-
-  span {
-    cursor: pointer;
-  }
-`;
-
-const HeaderOverlay = styled.div<any>`
+const NavOverlay = styled.div<any>`
   position: fixed;
   z-index: 98;
   top: 0;
@@ -116,7 +140,7 @@ const HeaderOverlay = styled.div<any>`
   }
 `;
 
-const HeaderMenu = styled.div<any>`
+const NavMenu = styled.div<any>`
   position: fixed;
   z-index: 99;
   top: 0;
@@ -129,7 +153,7 @@ const HeaderMenu = styled.div<any>`
   gap: 1.5rem;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #fff;
+  background-color: var(--white);
   visibility: hidden;
   transition: 0.3s;
 
@@ -155,6 +179,21 @@ const HeaderMenu = styled.div<any>`
   }
 `;
 
+const NavMobile = styled.nav`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media screen and (min-width: 700px) {
+    display: none;
+  }
+
+  span {
+    cursor: pointer;
+  }
+`;
+
 const NavLink = styled(Link)`
   margin-top: 2rem;
   margin-left: 1rem;
@@ -168,7 +207,7 @@ const NavLink = styled(Link)`
   }
 
   &:hover {
-    border-bottom: 2px solid #3d3d3d;
+    border-bottom: 2px solid var(--black);
   }
 
   span {
