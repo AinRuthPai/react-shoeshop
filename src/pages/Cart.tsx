@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Menu } from "./MainPage";
 import { addCount, removeCount, removeItem } from "../store";
 
 export default function Cart() {
@@ -21,112 +20,131 @@ export default function Cart() {
 
   return (
     <CartContainer>
-      <Menu>
-        <span>장바구니</span>
-        <span>{`>`}</span>
-      </Menu>
-      <CartTable>
-        <thead>
-          <tr>
-            <th>
+      <CartCheckWrapper>
+        <CheckBox onClick={onToggleCheck} check={check}>
+          {check ? <p>✔</p> : null}
+        </CheckBox>
+        <span>전체 1개</span>
+        <span>선택 삭제</span>
+      </CartCheckWrapper>
+      {state.cart.map((item: any, i: any) => {
+        return (
+          <CartItemWrapper>
+            <div>
               <CheckBox onClick={onToggleCheck} check={check}>
                 {check ? <p>✔</p> : null}
               </CheckBox>
-            </th>
-            <th>전체 선택 {state.cart.length}</th>
-            <th>상품명</th>
-            <th>수량</th>
-            <th>상품금액</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {state.cart.map((item: any, i: any) => {
-            return (
-              <tr key={i}>
-                <td>
-                  <CheckBox onClick={onToggleCheck} check={check}>
-                    {check ? <p>✔</p> : null}
-                  </CheckBox>
-                </td>
-                <td>
-                  <CartImg src={`https://ainruthpai.github.io/imgSrc/shoeshop/shoes${item.id + 1}.jpg`} />
-                </td>
-                <td>{state.cart[i].name}</td>
-                <td>
-                  <CountBtn
-                    onClick={() => {
-                      dispatch(removeCount(i));
-                    }}>
-                    <span className='material-symbols-outlined'>remove</span>
-                  </CountBtn>
-                  <span>{state.cart[i].count}</span>
-                  <CountBtn
-                    onClick={() => {
-                      dispatch(addCount(i));
-                    }}>
-                    <span className='material-symbols-outlined'>add</span>
-                  </CountBtn>
-                </td>
-                <td>{`${state.cart[i].price * state.cart[i].count} 원`}</td>
-                <td
+              <CartImg src={`https://ainruthpai.github.io/imgSrc/shoeshop/shoes${item.id + 1}.jpg`} />
+            </div>
+            <div>
+              <span>{state.cart[i].name}</span>
+              <CountWrapper>
+                <CountBtn
                   onClick={() => {
-                    dispatch(removeItem(state.cart[i]));
+                    dispatch(removeCount(i));
                   }}>
-                  <DeleteIcon>
-                    <span className='material-symbols-outlined'>delete</span>
-                  </DeleteIcon>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </CartTable>
+                  <span className='material-symbols-outlined'>remove</span>
+                </CountBtn>
+                <span>{state.cart[i].count}</span>
+                <CountBtn
+                  onClick={() => {
+                    dispatch(addCount(i));
+                  }}>
+                  <span className='material-symbols-outlined'>add</span>
+                </CountBtn>
+              </CountWrapper>
+            </div>
+            <div>
+              <DeleteIcon
+                onClick={() => {
+                  dispatch(removeItem(state.cart[i]));
+                }}>
+                <span className='material-symbols-outlined'>delete</span>
+              </DeleteIcon>
+              <span>{`${state.cart[i].price * state.cart[i].count} 원`}</span>
+            </div>
+          </CartItemWrapper>
+        );
+      })}
       <CartPrice>
         <span>결제 예정 금액</span>
         <p>{`${totalPrice} 원`}</p>
       </CartPrice>
-      <BtnTamplate>주문하기</BtnTamplate>
+      <BtnTamplate>
+        <span>{`${totalPrice} 원 주문하기`}</span>
+      </BtnTamplate>
     </CartContainer>
   );
 }
 
 const CartContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   width: 100%;
   min-height: calc(100vh - 9rem);
-  margin: 0 auto;
+  margin: 4rem auto 0;
+  background-color: rgba(238, 239, 243, 0.5);
 `;
 
-const CartTable = styled.table`
+const CartCheckWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 4rem;
   margin: 1rem auto;
-  border-collapse: collapse;
+  padding: 0.7rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
 
-  thead tr th {
-    padding: 8px 10px;
-    background-color: var(--gray);
-    border-bottom: 1px solid black;
+  span:last-child {
+    position: absolute;
+    right: 0;
+    margin-right: 1rem;
+  }
+`;
+
+const CartItemWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin: 1rem 0;
+  background-color: white;
+  padding: 0.7rem;
+
+  > div:first-child {
+    display: flex;
   }
 
-  tbody tr td {
-    padding: 8px;
+  > div:nth-child(2),
+  div:nth-child(3) {
+    display: flex;
+    flex-direction: column;
   }
+
+  > div:nth-child(3) {
+    align-items: flex-end;
+    position: absolute;
+    right: 0;
+    margin-right: 1rem;
+  }
+`;
+
+const CountWrapper = styled.div`
+  display: flex;
+  margin-top: 1rem;
 `;
 
 const CartPrice = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 320px;
-  height: 64px;
-  margin: 5%;
-  padding: 0 32px;
-  background-color: var(--gray);
-  border: 1px solid black;
+  width: 100%;
+  height: 4rem;
+  margin-top: 1rem;
+  padding: 0 2rem;
+  background-color: white;
 
   > span {
     font-size: 14px;
@@ -140,21 +158,24 @@ const CartPrice = styled.div`
 
 export const BtnTamplate = styled.button`
   margin: 5%;
-  padding: 12px 40px;
+  padding: 1rem 2rem;
   background-color: var(--black);
   color: var(--white);
-  font-size: 14px;
   border: none;
   cursor: pointer;
   border-radius: 6px;
+
+  span {
+    font-size: 1rem;
+  }
 `;
 
 const CheckBox = styled.div<any>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   font-size: 16px;
   border: 1px solid var(--black);
   cursor: pointer;
@@ -167,7 +188,7 @@ const CheckBox = styled.div<any>`
 `;
 
 const CountBtn = styled.button`
-  margin: 4px 8px;
+  margin: 0 0.5rem;
   padding: 2px 4px;
   background-color: var(--gray);
   border: none;
@@ -186,7 +207,8 @@ const CartImg = styled.img`
 
 const DeleteIcon = styled.button`
   padding: 0;
-  background-color: var(--white);
+  margin-bottom: 1rem;
+  background-color: inherit;
   font-size: 20px;
   border: none;
   cursor: pointer;

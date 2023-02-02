@@ -80,6 +80,7 @@ const ToTopBtn = styled.button`
   border-radius: 10px;
   color: rgba(0, 0, 0, 0.5);
   background-color: rgba(238, 239, 243, 0.5);
+  cursor: pointer;
 
   span {
     font-size: 2rem;

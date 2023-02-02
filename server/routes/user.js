@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../schemas/User");
-// const bcrypt = require("bcrypt");
-// const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 router.get("/userdata", async (req, res) => {
   try {
@@ -29,16 +29,20 @@ router.post("/signup", async (req, res) => {
       password,
     });
 
-    // const salt = await bcrypt.genSalt(5);
-    // user.password = await bcrypt.hash(password, salt);
+    const salt = await bcrypt.genSalt(5);
+    user.password = await bcrypt.hash(password, salt);
 
     await user.save();
 
-    // const payload = {
-    //   user: {
-    //     id: user.id,
-    //   },
-    // };
+    const payload = {
+      user: {
+        id: user.id,
+      },
+    };
+    jwt.sign(payload, "jwtSecret", { expiresIn: "1h" }, (error, token) => {
+      if (error) throw error;
+      res.send({ token });
+    });
   } catch (error) {
     console.log(error.message);
     res.status(500).send("Server Error!");

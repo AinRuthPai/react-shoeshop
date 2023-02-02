@@ -106,12 +106,12 @@ const NavContainer = styled.nav`
   h1 {
     position: absolute;
     font-size: 1.3rem;
+    cursor: pointer;
 
     @media screen and (min-width: 700px) {
       position: static;
       display: block;
       font-size: 1.5rem;
-      cursor: pointer;
     }
   }
 `;
@@ -197,6 +197,7 @@ const NavMobile = styled.nav`
 const NavLink = styled(Link)`
   margin-top: 2rem;
   margin-left: 1rem;
+  padding-right: 0.5rem;
   color: black;
   text-decoration: none;
   display: flex;

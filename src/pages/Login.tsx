@@ -1,34 +1,31 @@
 import styled from "styled-components";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { login } from "../store";
+import { useRef } from "react";
+import axios from "axios";
 
 export default function Login() {
-  const dispatch = useDispatch();
-  const [text, setText] = useState("");
-  const [text2, setText2] = useState("");
+  let emailRef: any = useRef();
+  let passwordRef: any = useRef();
 
-  function handleLoginForm(event: any) {
-    event.preventDefault();
-    dispatch(login({ email: text, password: text2 }));
-    setText("");
-    setText2("");
-  }
-
-  function onChange(e: any) {
-    setText(e.target.value);
-  }
-
-  function onChange2(e: any) {
-    setText2(e.target.value);
+  function handleLoginForm() {
+    axios
+      .post("http://localhost:5000/signup", {
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(`Login Error : ${error}`);
+      });
   }
 
   return (
     <FormContainer>
-      <FormStyle onSubmit={handleLoginForm}>
-        <input type='text' placeholder='email' onChange={onChange} value={text} />
-        <input type='password' placeholder='password' onChange={onChange2} value={text2} />
-        <button>로그인</button>
+      <FormStyle>
+        <input type='text' placeholder='email' ref={emailRef} />
+        <input type='password' placeholder='password' ref={passwordRef} />
+        <button onClick={handleLoginForm}>로그인</button>
         <div>
           <span>{`아직 계정이 없으신가요? ->`} </span>
           <span>회원가입</span>
