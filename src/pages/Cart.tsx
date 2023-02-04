@@ -24,7 +24,7 @@ export default function Cart() {
         <CheckBox onClick={onToggleCheck} check={check}>
           {check ? <p>✔</p> : null}
         </CheckBox>
-        <span>전체 1개</span>
+        <span>전체 {state.cart.length}개</span>
         <span>선택 삭제</span>
       </CartCheckWrapper>
       {state.cart.map((item: any, i: any) => {
@@ -71,7 +71,8 @@ export default function Cart() {
         <p>{`${totalPrice} 원`}</p>
       </CartPrice>
       <BtnTamplate>
-        <span>{`${totalPrice} 원 주문하기`}</span>
+        <span>{`￦ ${totalPrice}`}</span>
+        <span>주문하기</span>
       </BtnTamplate>
     </CartContainer>
   );
@@ -82,7 +83,7 @@ const CartContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: calc(100vh - 9rem);
+  min-height: calc(100vh - 14rem);
   margin: 4rem auto 0;
   background-color: rgba(238, 239, 243, 0.5);
 `;
@@ -159,14 +160,17 @@ const CartPrice = styled.div`
 export const BtnTamplate = styled.button`
   margin: 5%;
   padding: 1rem 2rem;
-  background-color: var(--black);
+  background-color: rgb(117, 50, 249);
   color: var(--white);
   border: none;
   cursor: pointer;
   border-radius: 6px;
 
-  span {
+  > span:first-child {
     font-size: 1rem;
+    font-weight: 600;
+    margin-right: 1.5rem;
+    letter-spacing: 1px;
   }
 `;
 
@@ -176,6 +180,7 @@ const CheckBox = styled.div<any>`
   justify-content: center;
   width: 16px;
   height: 16px;
+  margin-right: 1%;
   font-size: 16px;
   border: 1px solid var(--black);
   cursor: pointer;

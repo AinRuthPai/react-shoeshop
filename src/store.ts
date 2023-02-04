@@ -44,8 +44,6 @@ const loginSlice = createSlice({
   reducers: {
     login(state: any, action: any) {
       state.push(action.payload);
-      console.log(action.payload.email);
-      console.log(action.payload.password);
       axios
         .post("http://localhost:5000/signup", {
           email: action.payload.email,

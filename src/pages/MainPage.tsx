@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import bannerImg from "../img/main_img.jpg";
-import Item from "../components/Item";
+import Item from "../components/ItemCard";
 import { Swiper, SwiperSlide } from "swiper/react"; // basic
 import { Navigation, Pagination } from "swiper";
 import "swiper/css"; //basic
@@ -65,7 +65,7 @@ export default function MainPage({ data }: any) {
               spaceBetween: 30,
             },
           }}>
-          {todayItem.map((data: any) => {
+          {todayItem.map((data: any, i: any) => {
             return (
               <SwiperSlide>
                 <Item data={data} key={data.id} />

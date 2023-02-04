@@ -19,5 +19,9 @@ const NotFoundContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 50vh;
+  min-height: 90vh;
+
+  span {
+    margin: 1rem 0;
+  }
 `;

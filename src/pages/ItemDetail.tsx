@@ -19,10 +19,10 @@ export default function ItemDetail({ data }: any) {
 
   return (
     <DetailContainer>
-      <Menu>
+      {/* <Menu>
         <span>상품 정보</span>
         <span>{`>`}</span>
-      </Menu>
+      </Menu> */}
       <DetailItemBox>
         <DetailImg src={`https://ainruthpai.github.io/imgSrc/shoeshop/shoes${findItem.id + 1}.jpg`} />
         <div>
@@ -75,10 +75,15 @@ export default function ItemDetail({ data }: any) {
 
 const DetailContainer = styled.div`
   width: 100%;
+  margin-top: 4rem;
 `;
 
 const DetailItemBox = styled.div`
   width: 100%;
+
+  > div {
+    margin-top: 1rem;
+  }
 
   div:nth-child(2) {
     display: flex;
@@ -141,14 +146,14 @@ const MobileDetailFooter = styled.nav`
 `;
 
 const ItemDetailContent = styled.div`
-  width: 80%;
   margin: 2rem auto 0;
   text-align: center;
+  /* height: 100vh; */
 `;
 
 const CartBtn = styled(BtnTamplate)`
   width: 50%;
-  padding: 20px 10px;
+  padding: 1.2rem 1.7rem;
 `;
 
 const MenuLine = styled(Menu)`

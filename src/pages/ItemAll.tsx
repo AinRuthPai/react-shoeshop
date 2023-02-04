@@ -22,6 +22,7 @@ const ItemContainer = styled(SortingItemWrapper)`
   display: flex;
   flex-direction: column;
   margin: 1rem auto;
+  background-color: rgba(238, 239, 243, 0.5);
 
   @media screen and (min-width: 700px) {
     display: grid;

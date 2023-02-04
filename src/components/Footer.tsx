@@ -32,6 +32,8 @@ export default function Footer() {
 }
 
 const FooterBox = styled.footer`
+  position: absolute;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;

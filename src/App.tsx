@@ -21,8 +21,8 @@ export default function App() {
       <Header />
       <Routes>
         <Route path='/react-shoeshop' element={<MainPage data={data} />} />
-        <Route path='/react-shoeshop/detail/:id' element={<ItemDetail data={data} />} />
         <Route path='/react-shoeshop/itemall' element={<ItemAll data={data} />} />
+        <Route path='/react-shoeshop/detail/:id' element={<ItemDetail data={data} />} />
         <Route path='/react-shoeshop/cart' element={<Cart />} />
         <Route path='/react-shoeshop/login' element={<Login />} />
         <Route path='/react-shoeshop/*' element={<NotFound />} />
@@ -53,11 +53,14 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
+  position: relative;
   width: 100%;
   margin: 0 auto ;
   text-align: center;
   font-family: 'Pretendard-Regular';
   animation: fadein 2s;
+  padding-bottom: var(--footer-height);
+
 
   -webkit-user-select: none;
   -moz-user-select: none;
