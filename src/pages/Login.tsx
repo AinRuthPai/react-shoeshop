@@ -1,19 +1,24 @@
 import styled from "styled-components";
 import { useRef } from "react";
+import { LinkDefaultStyle } from "./MainPage";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   let emailRef: any = useRef();
   let passwordRef: any = useRef();
+  const navigate = useNavigate();
 
-  function handleLoginForm() {
+  function handleLoginForm(event: any) {
+    event.preventDefault();
     axios
-      .post("http://localhost:5000/signup", {
+      .post("http://localhost:5000/login", {
         email: emailRef.current.value,
         password: passwordRef.current.value,
       })
       .then((res) => {
         console.log(res);
+        navigate("/react-shoeshop/");
       })
       .catch((error) => {
         console.log(`Login Error : ${error}`);
@@ -28,14 +33,18 @@ export default function Login() {
         <button onClick={handleLoginForm}>로그인</button>
         <div>
           <span>{`아직 계정이 없으신가요? ->`} </span>
-          <span>회원가입</span>
+          <LinkDefaultStyle to='/react-shoeshop/signup'>회원가입</LinkDefaultStyle>
         </div>
       </FormStyle>
+      <div>
+        <p>테스트용 email : admin@naver.com</p>
+        <p>테스트용 password : admin</p>
+      </div>
     </FormContainer>
   );
 }
 
-const FormContainer = styled.div`
+export const FormContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -43,9 +52,13 @@ const FormContainer = styled.div`
   align-items: center;
   margin: 0 auto;
   min-height: calc(100vh - 9rem);
+
+  p {
+    font-size: 1.2rem;
+  }
 `;
 
-const FormStyle = styled.form`
+export const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

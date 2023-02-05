@@ -10,6 +10,7 @@ import ItemAll from "./pages/ItemAll";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 import ScrollToTop from "./ScrollToTop";
+import SignUp from "./pages/SignUp";
 
 export default function App() {
   const data = Data;
@@ -25,6 +26,7 @@ export default function App() {
         <Route path='/react-shoeshop/detail/:id' element={<ItemDetail data={data} />} />
         <Route path='/react-shoeshop/cart' element={<Cart />} />
         <Route path='/react-shoeshop/login' element={<Login />} />
+        <Route path='/react-shoeshop/signup' element={<SignUp />} />
         <Route path='/react-shoeshop/*' element={<NotFound />} />
       </Routes>
       <Footer />

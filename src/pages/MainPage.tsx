@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { useRef } from "react";
 import Brand from "../components/Brand";
+import { Link } from "react-router-dom";
 
 export default function MainPage({ data }: any) {
   const todayItem = [];
@@ -185,4 +186,9 @@ export const Menu = styled.div`
   @media screen and (max-width: 700px) {
     font-size: 18px;
   }
+`;
+
+export const LinkDefaultStyle = styled(Link)`
+  text-decoration: none;
+  color: black;
 `;
