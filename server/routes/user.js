@@ -4,6 +4,7 @@ const User = require("../schemas/User");
 const auth = require("../middlewares/auth-middleware");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const SECRET_KEY = "MY-SECRET-KEY";
 
 // @route  GET /userdata
 // @desc   Userdata
@@ -38,7 +39,25 @@ router.post("/login", async (req, res) => {
 
       // 복호화한 비밀번호가 맞다면
       if (isEqualPw) {
-        return res.status(200).json({ msg: "로그인 성공!", user });
+        // json web token 생성 및 response
+        const payload = {
+          //   // json web token 으로 변환할 데이터 정보
+          user: {
+            id: user.id,
+          },
+        };
+
+        // json web token 생성하여 send 해주기
+        jwt.sign(
+          payload, // 변환할 데이터
+          "jwtSecret", // secret key 값
+          { expiresIn: "30m" }, // token의 유효시간
+          (error, token) => {
+            if (error) throw error;
+            res.send({ token }); // token 값 response 해주기
+          }
+        );
+        // return res.status(200).json({ msg: "로그인 성공!", user });
       } else {
         return res.status(404).json({ msg: "로그인 실패" });
       }
@@ -78,24 +97,7 @@ router.post("/signup", async (req, res) => {
     // db에 user 저장
     await user.save();
 
-    // json web token 생성 및 response
-    const payload = {
-      // json web token 으로 변환할 데이터 정보
-      user: {
-        id: user.id,
-      },
-    };
-
-    // json web token 생성하여 send 해주기
-    jwt.sign(
-      payload, // 변환할 데이터
-      "jwtSecret", // secret key 값
-      { expiresIn: "1h" }, // token의 유효시간
-      (error, token) => {
-        if (error) throw error;
-        res.send({ token }); // token 값 response 해주기
-      }
-    );
+    res.send("Success create user!");
   } catch (error) {
     console.log(error.message);
     res.status(500).send("Server Error!");
