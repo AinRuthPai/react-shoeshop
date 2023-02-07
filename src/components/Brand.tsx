@@ -10,14 +10,12 @@ export default function Brand() {
         <span className='material-symbols-outlined'>arrow_forward_ios</span>
       </Menu>
       <BrandContainer>
-        <BrandIconLink to='#'>반스</BrandIconLink>
-        <BrandIconLink to='#'>컨버스</BrandIconLink>
-        <BrandIconLink to='#'>아디다스</BrandIconLink>
-        <BrandIconLink to='#'>뉴발란스</BrandIconLink>
-        <BrandIconLink to='#'>슈펜</BrandIconLink>
-        <BrandIconLink to='#'>
-          <img src='https://www.freeiconspng.com/uploads/nike-icon-logo-png-8.png' alt='' />
-        </BrandIconLink>
+        <BrandIconLink to='#'>Vans</BrandIconLink>
+        <BrandIconLink to='#'>Converse</BrandIconLink>
+        <BrandIconLink to='#'>Adidas</BrandIconLink>
+        <BrandIconLink to='#'>Newbalance</BrandIconLink>
+        <BrandIconLink to='#'>Shoopen</BrandIconLink>
+        <BrandIconLink to='#'>Nike</BrandIconLink>
       </BrandContainer>
     </>
   );
@@ -40,10 +38,11 @@ const BrandIconLink = styled(Link)`
   align-items: center;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
 
   img {
     width: 100%;
+    height: 100%;
     border-radius: 10px;
-    object-fit: contain;
   }
 `;

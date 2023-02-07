@@ -64,10 +64,10 @@ body {
   padding-bottom: var(--footer-height);
 
 
-  -webkit-user-select: none;
+  /* -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none; */
 
   @font-face {
       font-family: 'Pretendard-Regular';

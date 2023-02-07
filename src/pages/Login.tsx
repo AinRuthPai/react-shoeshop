@@ -17,7 +17,7 @@ export default function Login() {
         password: passwordRef.current.value,
       })
       .then((res) => {
-        console.log(res);
+        console.log(res.data.token);
         navigate("/react-shoeshop/");
       })
       .catch((error) => {
@@ -37,8 +37,8 @@ export default function Login() {
         </div>
       </FormStyle>
       <div>
-        <p>테스트용 email : admin@naver.com</p>
-        <p>테스트용 password : admin</p>
+        <p>email : admin@naver.com</p>
+        <p>password : admin</p>
       </div>
     </FormContainer>
   );
@@ -62,7 +62,7 @@ export const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   padding: 18px 10px;
 
@@ -87,5 +87,9 @@ export const FormStyle = styled.form`
     border: none;
     border-radius: 6px;
     cursor: pointer;
+  }
+
+  > div {
+    margin: 1rem 0;
   }
 `;

@@ -4,7 +4,6 @@ const User = require("../schemas/User");
 const auth = require("../middlewares/auth-middleware");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const SECRET_KEY = "MY-SECRET-KEY";
 
 // @route  GET /userdata
 // @desc   Userdata
@@ -13,6 +12,7 @@ router.get("/userdata", auth, async (req, res) => {
   try {
     // auth 미들웨어에서 생성해준 req.user를 사용하여 DB에서 user 탐색
     const user = await User.findById(req.user.id).select("-password");
+    console.log(user);
     res.json(user);
   } catch (error) {
     console.log(error.message);

@@ -6,6 +6,7 @@ import { useRef, useEffect } from "react";
 export default function Header() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [onClickMenu, setOnClickMenu] = useState<boolean>(false);
   const targetRef: any = useRef(null);
   let prevScrollTop = 0;
 
@@ -37,6 +38,10 @@ export default function Header() {
     };
   }, []);
 
+  function handleDropDown() {
+    setOnClickMenu(!onClickMenu);
+  }
+
   return (
     <NavContainer ref={targetRef}>
       <NavOverlay open={isOpen} onClick={toggleMenuOpen} />
@@ -50,12 +55,27 @@ export default function Header() {
             <span className='material-symbols-outlined'>shopping_bag</span>
             전체 상품
           </NavLink>
+          <DropDownMenu open={onClickMenu} onClick={handleDropDown}>
+            <span className='material-symbols-outlined'>category</span>
+            브랜드
+          </DropDownMenu>
+          <Test open={onClickMenu}>
+            <li>Vans</li>
+            <li>Converse</li>
+            <li>Adidas</li>
+            <li>Newbalance</li>
+            <li>Shoopen</li>
+            <li>Nike</li>
+          </Test>
           <NavLink to='/react-shoeshop/cart'>
             <span className='material-symbols-outlined'>shopping_cart</span>장바구니
           </NavLink>
           <NavLink to='/react-shoeshop/login'>
             <span className='material-symbols-outlined'>login</span>로그인
           </NavLink>
+          <button>
+            <span className='material-symbols-outlined'>account_circle</span>
+          </button>
         </NavMenu>
       </header>
       <NavMobile>
@@ -157,7 +177,18 @@ const NavMenu = styled.div<any>`
   visibility: hidden;
   transition: 0.3s;
 
-  ${(props) =>
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 1rem auto;
+
+    span {
+      font-size: 2rem;
+    }
+  }
+
+  ${(props: any) =>
     props.open &&
     css`
       translate: 0 0;
@@ -195,7 +226,7 @@ const NavMobile = styled.nav`
 `;
 
 const NavLink = styled(Link)`
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-left: 1rem;
   padding-right: 0.5rem;
   color: black;
@@ -217,6 +248,55 @@ const NavLink = styled(Link)`
 
     @media screen and (min-width: 700px) {
       display: none;
+    }
+  }
+`;
+
+const DropDownMenu = styled.div<any>`
+  margin-top: 1rem;
+  margin-left: 1rem;
+  padding-right: 0.5rem;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    border-bottom: 2px solid var(--black);
+    cursor: pointer;
+  }
+
+  span {
+    font-size: 2rem;
+    margin-right: 1rem;
+
+    @media screen and (min-width: 700px) {
+      display: none;
+    }
+  }
+`;
+
+const Test = styled.ul<any>`
+  display: none;
+  list-style: none;
+
+  ${(props: any) =>
+    props.open &&
+    css`
+      display: flex;
+      flex-direction: column;
+      margin: 0.5rem auto;
+      animation: fade-in 0.3s;
+    `}
+
+  li {
+    margin: 0.5rem 0;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 `;
