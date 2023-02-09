@@ -16,6 +16,7 @@ const server = async () => {
     .catch((error) => console.log(`MongoDB Connect Error : ${error}`));
 
   app.use("/", require("./routes/user"));
+  app.use("/", require("./routes/item"));
 
   app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 };

@@ -12,7 +12,6 @@ router.get("/userdata", auth, async (req, res) => {
   try {
     // auth 미들웨어에서 생성해준 req.user를 사용하여 DB에서 user 탐색
     const user = await User.findById(req.user.id).select("-password");
-    console.log(user);
     res.json(user);
   } catch (error) {
     console.log(error.message);
