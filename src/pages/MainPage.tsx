@@ -190,5 +190,5 @@ export const Menu = styled.div`
 
 export const LinkDefaultStyle = styled(Link)`
   text-decoration: none;
-  color: black;
+  color: blue;
 `;

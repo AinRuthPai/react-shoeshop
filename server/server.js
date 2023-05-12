@@ -15,8 +15,8 @@ const server = async () => {
     .then(() => console.log(`MongoDB Connected`))
     .catch((error) => console.log(`MongoDB Connect Error : ${error}`));
 
-  app.use("/", require("./routes/user"));
-  app.use("/", require("./routes/item"));
+  app.use("/api/users", require("./routes/users"));
+  app.use("/api/items", require("./routes/items"));
 
   app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 };

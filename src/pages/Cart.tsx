@@ -1,29 +1,59 @@
 import styled, { css } from "styled-components";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCount, removeCount, removeItem } from "../store";
 
 export default function Cart() {
   const dispatch = useDispatch();
-  const [check, setCheck] = useState<boolean>(true);
   const state: any = useSelector((state) => state);
 
-  const itemPrice = state.cart.map((state: any) => {
+  const [isChecked, setIsChecked] = useState<any>(true);
+  const [checkedList, setCheckedList] = useState<any>(state.cart);
+
+  const itemPrice = checkedList.map((state: any) => {
     return Object.values<any>(state)[2] * state.count;
   });
 
   const totalPrice = itemPrice.reduce((a: any, b: any) => a + b, 0);
 
-  function onToggleCheck() {
-    setCheck(!check);
+  useEffect(() => {
+    setCheckedList(state.cart);
+  }, [checkedList]);
+
+  function checkedItemHandler(value: any, isChecked: boolean) {
+    if (isChecked) {
+      setCheckedList((prev: any) => [...prev, value]);
+
+      return;
+    }
+
+    if (!isChecked && checkedList.includes(value)) {
+      setCheckedList(checkedList.filter((item: any) => item !== value));
+
+      return;
+    }
+
+    return;
   }
+
+  function checkHandler(e: React.ChangeEvent<HTMLInputElement>, value: any) {
+    setIsChecked(!isChecked);
+    checkedItemHandler(value, e.target.checked);
+  }
+
+  // const onSubmit = useCallback(
+  //   (e: React.FormEvent<HTMLFormElement>) => {
+  //     e.preventDefault();
+
+  //     console.log("test : ", checkedList);
+  //   },
+  //   [checkedList]
+  // );
 
   return (
     <CartContainer>
       <CartCheckWrapper>
-        <CheckBox onClick={onToggleCheck} check={check}>
-          {check ? <p>✔</p> : null}
-        </CheckBox>
+        <input type='checkbox'></input>
         <span>전체 {state.cart.length}개</span>
         <span>선택 삭제</span>
       </CartCheckWrapper>
@@ -31,9 +61,7 @@ export default function Cart() {
         return (
           <CartItemWrapper>
             <div>
-              <CheckBox onClick={onToggleCheck} check={check}>
-                {check ? <p>✔</p> : null}
-              </CheckBox>
+              <input type='checkbox' checked={checkedList.includes(item)} onChange={(e) => checkHandler(e, item)}></input>
               <CartImg src={`https://ainruthpai.github.io/imgSrc/shoeshop/shoes${item.id + 1}.jpg`} />
             </div>
             <div>
@@ -77,6 +105,13 @@ export default function Cart() {
     </CartContainer>
   );
 }
+
+const Center = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const CartContainer = styled.div`
   position: relative;
@@ -174,23 +209,23 @@ export const BtnTamplate = styled.button`
   }
 `;
 
-const CheckBox = styled.div<any>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  margin-right: 1%;
-  font-size: 16px;
-  border: 1px solid var(--black);
-  cursor: pointer;
-  ${(props: any) =>
-    props.check &&
-    css`
-      background-color: var(--black);
-      color: var(--white);
-    `}
-`;
+// const CheckBox = styled.div<any>`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 16px;
+//   height: 16px;
+//   margin-right: 1%;
+//   font-size: 16px;
+//   border: 1px solid var(--black);
+//   cursor: pointer;
+//   ${(props: any) =>
+//     props.check &&
+//     css`
+//       background-color: var(--black);
+//       color: var(--white);
+//     `}
+// `;
 
 const CountBtn = styled.button`
   margin: 0 0.5rem;

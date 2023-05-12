@@ -11,18 +11,27 @@ export default function Login() {
 
   function handleLoginForm(event: any) {
     event.preventDefault();
-    axios
-      .post("http://localhost:5000/login", {
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-      })
-      .then((res) => {
-        console.log(res.data.token);
-        navigate("/react-shoeshop/");
-      })
-      .catch((error) => {
-        console.log(`Login Error : ${error}`);
-      });
+
+    let emailValue = emailRef.current.value;
+    let passwordValue = passwordRef.current.value;
+
+    if (!emailValue || !passwordValue) {
+      alert("이메일이나 비밀번호를 입력해주세요.");
+    } else {
+      axios
+        .post("http://localhost:5000/api/users/login", {
+          email: emailValue,
+          password: passwordValue,
+        })
+        .then((res) => {
+          // console.log(res.data.token);
+          console.log(res.data);
+          navigate("/react-shoeshop/");
+        })
+        .catch((error) => {
+          console.log(`Login Error : ${error}`);
+        });
+    }
   }
 
   return (
@@ -32,8 +41,8 @@ export default function Login() {
         <input type='password' placeholder='password' ref={passwordRef} />
         <button onClick={handleLoginForm}>로그인</button>
         <div>
-          <span>{`아직 계정이 없으신가요? ->`} </span>
-          <LinkDefaultStyle to='/react-shoeshop/signup'>회원가입</LinkDefaultStyle>
+          <span>{`아직 계정이 없으신가요?`} </span>
+          <LinkDefaultStyle to='/react-shoeshop/signup'>회원가입하기</LinkDefaultStyle>
         </div>
       </FormStyle>
       <div>

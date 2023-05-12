@@ -148,7 +148,7 @@ const MobileDetailFooter = styled.nav`
 const ItemDetailContent = styled.div`
   margin: 2rem auto 0;
   text-align: center;
-  /* height: 100vh; */
+  min-height: 100vh;
 `;
 
 const CartBtn = styled(BtnTamplate)`

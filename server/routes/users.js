@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../schemas/User");
-const auth = require("../middlewares/auth-middleware");
+const auth = require("../middleware/auth-middleware");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-// @route  GET /userdata
+// @route  GET /api/user
 // @desc   Userdata
 // @access Public
-router.get("/userdata", auth, async (req, res) => {
+router.get("/auth", auth, async (req, res) => {
   try {
     // auth 미들웨어에서 생성해준 req.user를 사용하여 DB에서 user 탐색
     const user = await User.findById(req.user.id).select("-password");
@@ -19,10 +19,10 @@ router.get("/userdata", auth, async (req, res) => {
   }
 });
 
-// @route  POST /login
+// @route  POST /api/login
 // @desc   Login user
 // @access Public
-router.post("/login", async (req, res) => {
+router.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
@@ -47,15 +47,18 @@ router.post("/login", async (req, res) => {
         };
 
         // json web token 생성하여 send 해주기
-        jwt.sign(
+        const accessToken = jwt.sign(
           payload, // 변환할 데이터
           "jwtSecret", // secret key 값
-          { expiresIn: "30m" }, // token의 유효시간
+          { expiresIn: "1m" }, // token의 유효시간
           (error, token) => {
             if (error) throw error;
             res.send({ token }); // token 값 response 해주기
           }
         );
+        res.cookie("accessToken", accessToken);
+        next();
+
         // return res.status(200).json({ msg: "로그인 성공!", user });
       } else {
         return res.status(404).json({ msg: "로그인 실패" });
@@ -67,10 +70,10 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// @route  POST /signup
+// @route  POST /api/register
 // @desc   Register user
 // @access Public
-router.post("/signup", async (req, res) => {
+router.post("/register", async (req, res) => {
   try {
     // req의 body 정보를 사용하려면 server.js에서 따로 설정을 해줘야함
     const { email, name, password } = req.body;

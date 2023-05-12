@@ -27,7 +27,7 @@ export default function SignUp() {
       // 이메일 형식 검사를 통과할 때
       if (emailCheck.test(emailValue)) {
         axios
-          .post("http://localhost:5000/signup", {
+          .post("http://localhost:5000/api/users/register", {
             email: emailValue,
             name: nameValue,
             password: passwordValue,
@@ -68,8 +68,8 @@ export default function SignUp() {
         <input type='password' placeholder='password' ref={passwordRef} />
         <button onClick={handleSignUpForm}>회원가입</button>
         <div>
-          <span>{`이미 계정이 있나요? ->`} </span>
-          <LinkDefaultStyle to='/react-shoeshop/login'>로그인</LinkDefaultStyle>
+          <span>{`이미 계정이 있나요?`} </span>
+          <LinkDefaultStyle to='/react-shoeshop/login'>로그인하기</LinkDefaultStyle>
         </div>
       </FormStyle>
     </FormContainer>
