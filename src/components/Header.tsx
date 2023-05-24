@@ -55,10 +55,10 @@ export default function Header() {
             <span className='material-symbols-outlined'>shopping_bag</span>
             전체 상품
           </NavLink>
-          <DropDownMenu open={onClickMenu} onClick={handleDropDown}>
+          {/* <DropDownMenu open={onClickMenu} onClick={handleDropDown}>
             <span className='material-symbols-outlined'>category</span>
             브랜드
-          </DropDownMenu>
+          </DropDownMenu> */}
           <Test open={onClickMenu}>
             <li>Vans</li>
             <li>Converse</li>

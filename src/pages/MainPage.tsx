@@ -40,7 +40,6 @@ export default function MainPage({ data }: any) {
           expand_more
         </span>
       </MainPageBanner>
-      <Brand />
 
       <Menu>
         <span ref={ref}>추천 상품</span>

@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
-import { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { addCount, removeCount, removeItem } from "../store";
 
 export default function Cart() {
@@ -18,12 +18,11 @@ export default function Cart() {
 
   useEffect(() => {
     setCheckedList(state.cart);
-  }, [checkedList]);
+  }, [state.cart]);
 
   function checkedItemHandler(value: any, isChecked: boolean) {
     if (isChecked) {
       setCheckedList((prev: any) => [...prev, value]);
-
       return;
     }
 
@@ -41,22 +40,28 @@ export default function Cart() {
     checkedItemHandler(value, e.target.checked);
   }
 
-  // const onSubmit = useCallback(
-  //   (e: React.FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
+  function checkedItemAllHandler(isChecked: boolean) {
+    if (isChecked) {
+      setCheckedList(state.cart);
+    } else {
+      setCheckedList([]);
+    }
+  }
 
-  //     console.log("test : ", checkedList);
-  //   },
-  //   [checkedList]
-  // );
+  function checkAllHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    setIsChecked(!isChecked);
+    checkedItemAllHandler(e.target.checked);
+  }
 
   return (
     <CartContainer>
       <CartCheckWrapper>
-        <input type='checkbox'></input>
+        <input type='checkbox' onChange={(e) => checkAllHandler(e)} checked={checkedList.length === state.cart.length ? true : false} />
+
         <span>전체 {state.cart.length}개</span>
         <span>선택 삭제</span>
       </CartCheckWrapper>
+
       {state.cart.map((item: any, i: any) => {
         return (
           <CartItemWrapper>
@@ -94,6 +99,7 @@ export default function Cart() {
           </CartItemWrapper>
         );
       })}
+
       <CartPrice>
         <span>결제 예정 금액</span>
         <p>{`${totalPrice} 원`}</p>
@@ -105,13 +111,6 @@ export default function Cart() {
     </CartContainer>
   );
 }
-
-const Center = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
 
 const CartContainer = styled.div`
   position: relative;
@@ -138,38 +137,6 @@ const CartCheckWrapper = styled.div`
     right: 0;
     margin-right: 1rem;
   }
-`;
-
-const CartItemWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  margin: 1rem 0;
-  background-color: white;
-  padding: 0.7rem;
-
-  > div:first-child {
-    display: flex;
-  }
-
-  > div:nth-child(2),
-  div:nth-child(3) {
-    display: flex;
-    flex-direction: column;
-  }
-
-  > div:nth-child(3) {
-    align-items: flex-end;
-    position: absolute;
-    right: 0;
-    margin-right: 1rem;
-  }
-`;
-
-const CountWrapper = styled.div`
-  display: flex;
-  margin-top: 1rem;
 `;
 
 const CartPrice = styled.div`
@@ -209,23 +176,36 @@ export const BtnTamplate = styled.button`
   }
 `;
 
-// const CheckBox = styled.div<any>`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   width: 16px;
-//   height: 16px;
-//   margin-right: 1%;
-//   font-size: 16px;
-//   border: 1px solid var(--black);
-//   cursor: pointer;
-//   ${(props: any) =>
-//     props.check &&
-//     css`
-//       background-color: var(--black);
-//       color: var(--white);
-//     `}
-// `;
+const CartItemWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  background-color: white;
+  padding: 0.7rem;
+
+  > div:first-child {
+    display: flex;
+  }
+
+  > div:nth-child(2),
+  div:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  > div:nth-child(3) {
+    align-items: flex-end;
+    position: absolute;
+    right: 0;
+    margin-right: 1rem;
+  }
+`;
+
+const CountWrapper = styled.div`
+  display: flex;
+  margin-top: 1rem;
+`;
 
 const CountBtn = styled.button`
   margin: 0 0.5rem;
